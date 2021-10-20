@@ -1,0 +1,6 @@
+(** @canonical Game.Command *)
+module Command = Game__Command
+
+
+(** @canonical Game.TurnState *)
+module TurnState = Game__TurnState
