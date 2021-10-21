@@ -1,0 +1,4 @@
+OPAM installation required
+ANSITerminal required
+
+(Basically following the installation/build from A2 is sufficient)
