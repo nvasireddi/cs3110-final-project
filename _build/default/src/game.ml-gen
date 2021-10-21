@@ -1,3 +1,7 @@
+(** @canonical Game.Authors *)
+module Authors = Game__Authors
+
+
 (** @canonical Game.Command *)
 module Command = Game__Command
 

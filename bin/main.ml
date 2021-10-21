@@ -1,8 +1,7 @@
 open Game
-(** [play_game deck] starts the game with the deck deck. *)
-
 open TurnState
 
+(**Initialize a starting turn state [start_state].*)
 let start_state =
   {
     players =
@@ -14,8 +13,10 @@ let start_state =
     current_deck = TurnState.deck;
   }
 
+(**[get_first pred] is a helper function.*)
 let get_first pred = List.find pred
 
+(**[match_card card] is a helper function*)
 let match_card card =
   match card with
   | { value = 1; suit = s } -> "Ace of " ^ s
@@ -33,14 +34,18 @@ let match_card card =
   | { value = 13; suit = s } -> "King of " ^ s
   | _ -> "Should not see this"
 
+(**[print_card_list_aux lst] is a helper function.*)
 let rec print_card_list_aux (lst : card list) =
   match lst with
   | [] -> ""
   | h :: t -> match_card h ^ "\n" ^ print_card_list_aux t
 
+(**[print_card_list str lst] prints the card list [lst].*)
 let print_card_list str lst =
   print_endline (str ^ print_card_list_aux lst)
 
+(**[proceed_to_river state] continues the Poker game with the turn state
+   [river] by producing a new state [river_state].*)
 let proceed_to_river state =
   print_endline "\n\nHere is the river \n";
 
@@ -64,6 +69,8 @@ let proceed_to_river state =
         "\n You are raising. How much do you want to raise by?"
   | _ -> print_endline "\n You have folded, want to play another hand?"
 
+(**[proceed_to_turn state] continues the Poker game with the turn state
+   [state] by producing a new state [pturn_state].*)
 let proceed_to_turn state =
   print_endline "\n\nHere is the turn \n";
 
@@ -89,6 +96,8 @@ let proceed_to_turn state =
         "\n You are raising. How much do you want to raise by?"
   | _ -> print_endline "\n You have folded, want to play another hand?"
 
+(**[proceed_to_flop state] continues the Poker game with the turn state
+   [state] by producing a new state [flop_state].*)
 let proceed_to_flop state =
   print_endline "\n\nHere is the flop \n";
 
@@ -114,10 +123,14 @@ let proceed_to_flop state =
         "\n You are raising. How much do you want to raise by?"
   | _ -> print_endline "\n You have folded, want to play another hand?"
 
+(** [play_game start_state] starts the game with the turn state
+    [start_state]. *)
 let play_game start_state =
   print_endline "\n\nA heads up game has begun  \n";
 
   print_endline "\n\nHere is your hand:  \n";
+
+  Random.self_init ();
 
   let preflop_state = deal_hands (shuffle_state start_state) in
 

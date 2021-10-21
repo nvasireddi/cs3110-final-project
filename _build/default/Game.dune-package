@@ -13,6 +13,11 @@
   (wrapped
    (main_module_name Game)
    (modules
+    ((name Authors)
+     (obj_name game__Authors)
+     (visibility public)
+     (impl)
+     (intf))
     ((name Command)
      (obj_name game__Command)
      (visibility public)
