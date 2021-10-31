@@ -1,6 +1,7 @@
 lib: [
   "_build/install/default/lib/Game/META"
   "_build/install/default/lib/Game/TurnState.ml"
+  "_build/install/default/lib/Game/TurnState.mli"
   "_build/install/default/lib/Game/authors.ml"
   "_build/install/default/lib/Game/authors.mli"
   "_build/install/default/lib/Game/command.ml"
@@ -23,6 +24,7 @@ lib: [
   "_build/install/default/lib/Game/game__Command.cmx"
   "_build/install/default/lib/Game/game__TurnState.cmi"
   "_build/install/default/lib/Game/game__TurnState.cmt"
+  "_build/install/default/lib/Game/game__TurnState.cmti"
   "_build/install/default/lib/Game/game__TurnState.cmx"
   "_build/install/default/lib/Game/opam"
 ]

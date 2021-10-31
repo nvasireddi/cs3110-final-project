@@ -1,7 +1,5 @@
 open OUnit2
 
-
-
 (********************************************************************
    Here are some helper functions for your testing of set-like lists.
  ********************************************************************)
@@ -53,11 +51,6 @@ let cmp_demo =
    End helper functions.
  ********************************************************************)
 
-(* You are welcome to add strings containing JSON here, and use them as
-   the basis for unit tests. You can also use the JSON files in the data
-   directory as tests. And you can add JSON files in this directory and
-   use them, too. *)
-
 (* You should not be testing any helper functions here. Test only the
    functions exposed in the [.mli] files. Do not expose your helper
    functions. See the handout for an explanation. *)
@@ -66,11 +59,6 @@ let cmp_demo =
    the definitions below. Just keep it clear which tests are for which
    modules. *)
 
-
-
-let suite =
-  "test suite for Final"
-  >::: List.flatten
-         [ cmp_demo ]
+let suite = "test suite for Final" >::: List.flatten [ cmp_demo ]
 
 let _ = run_test_tt_main suite

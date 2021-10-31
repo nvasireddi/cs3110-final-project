@@ -23,7 +23,11 @@
      (visibility public)
      (impl)
      (intf))
-    ((name TurnState) (obj_name game__TurnState) (visibility public) (impl)))
+    ((name TurnState)
+     (obj_name game__TurnState)
+     (visibility public)
+     (impl)
+     (intf)))
    (alias_module
     (name Game)
     (obj_name game)

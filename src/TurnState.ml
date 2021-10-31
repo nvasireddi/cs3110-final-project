@@ -12,9 +12,6 @@ type player = {
 (**The type [player] is a record representing a player in a poker game,
    with fields [name] of type string and [hand] of type card list*)
 
-(**Initialize a standard deck of 52 cards, with a value of [1]
-   representing Ace, and [11],[12],[13] representing Jack, Queen, King,
-   respectively.*)
 let (deck : card list) =
   [
     { value = 1; suit = "Spades" };
@@ -81,6 +78,18 @@ type t = {
    representing a list of cards on the table but not in player hands,
    and [current_deck] representing the deck used in the game.*)
 
+let create_state plist : t =
+  { players = plist; community_cards = []; current_deck = deck }
+
+let create_player str = { name = str; hand = [] }
+
+let rec create_plist_aux slst =
+  match slst with
+  | [] -> []
+  | h :: t -> create_player h :: create_plist_aux t
+
+let create_plist slst : player list = create_plist_aux slst
+
 (**[draw_to_community_card turn_state n] is a helper function that
    removes [n] cards from the current_deck of [turn_state], and moves
    those cards into the community_cards of [turn_state]*)
@@ -95,13 +104,8 @@ let rec draw_to_community_card (turn_state : t) (n : int) : t =
   in
   if n = 1 then new_state else draw_to_community_card new_state (n - 1)
 
-(**[draw_flop turn_state] uses [draw_to_community_card] to create a
-   poker flop, returning an updated turn state with the flop.*)
 let draw_flop (turn_state : t) = draw_to_community_card turn_state 3
 
-(**[draw_turn_or_river turn_state] uses [draw_to_community_card] to
-   create a poker turn or river, returning an updated turn state with
-   the turn or river.*)
 let draw_turn_or_river (turn_state : t) =
   draw_to_community_card turn_state 1
 
@@ -115,8 +119,6 @@ let rec shuffle = function
       in
       List.rev_append (shuffle before) (shuffle after)
 
-(**[shuffle_state turn_state] uses [shuffle] to shuffle the deck of
-   [turn_state], returning the updated turn state.*)
 let rec shuffle_state turn_state =
   match turn_state.current_deck with
   | [] -> turn_state
@@ -159,9 +161,6 @@ let rec deal_hands_aux (plist : player list) (deck : card list) =
       deal_hand_to_player h deck :: deal_hands_aux t (remove_2 deck)
   | _ -> []
 
-(**[deal_hands turn_state] returns an updated turn state after dealing
-   out hands to all of the players in [turn_state], and ensuring the
-   cards dealt out have been removed from the deck of [turn_state].*)
 let deal_hands turn_state =
   {
     players = deal_hands_aux turn_state.players turn_state.current_deck;
@@ -169,3 +168,28 @@ let deal_hands turn_state =
     current_deck =
       remove_2n turn_state.current_deck (List.length turn_state.players);
   }
+
+let match_card card =
+  match card with
+  | { value = 1; suit = s } -> "Ace of " ^ s
+  | { value = 2; suit = s } -> "2 of " ^ s
+  | { value = 3; suit = s } -> "3 of " ^ s
+  | { value = 4; suit = s } -> "4 of " ^ s
+  | { value = 5; suit = s } -> "5 of " ^ s
+  | { value = 6; suit = s } -> "6 of " ^ s
+  | { value = 7; suit = s } -> "7 of " ^ s
+  | { value = 8; suit = s } -> "8 of " ^ s
+  | { value = 9; suit = s } -> "9 of " ^ s
+  | { value = 10; suit = s } -> "10 of " ^ s
+  | { value = 11; suit = s } -> "Jack of " ^ s
+  | { value = 12; suit = s } -> "Queen of " ^ s
+  | { value = 13; suit = s } -> "King of " ^ s
+  | _ -> "Should not see this"
+
+let get_community turn_state = turn_state.community_cards
+
+let get_name player = player.name
+
+let get_players turn_state = turn_state.players
+
+let get_hand player = player.hand

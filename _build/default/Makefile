@@ -19,12 +19,12 @@ finalcheck:
 	@bash check.sh final
 
 zip:
-	rm -f MS1Demo.zip
-	zip -r MS1Demo.zip . -x@exclude.lst
+	rm -f MS2Demo.zip
+	zip -r MS2Demo.zip . -x@exclude.lst
 
 clean:
 	dune clean
-	rm -f MS1Demo.zip
+	rm -f MS2Demo.zip
 
 doc:
 	dune build @doc

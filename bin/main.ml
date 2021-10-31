@@ -2,37 +2,10 @@ open Game
 open TurnState
 
 (**Initialize a starting turn state [start_state].*)
-let start_state =
-  {
-    players =
-      [
-        { name = "Player 1"; hand = [] };
-        { name = "Player 2"; hand = [] };
-      ];
-    community_cards = [];
-    current_deck = TurnState.deck;
-  }
+let start_state = create_state (create_plist [ "Player 1"; "Player 2" ])
 
 (**[get_first pred] is a helper function.*)
 let get_first pred = List.find pred
-
-(**[match_card card] is a helper function*)
-let match_card card =
-  match card with
-  | { value = 1; suit = s } -> "Ace of " ^ s
-  | { value = 2; suit = s } -> "2 of " ^ s
-  | { value = 3; suit = s } -> "3 of " ^ s
-  | { value = 4; suit = s } -> "4 of " ^ s
-  | { value = 5; suit = s } -> "5 of " ^ s
-  | { value = 6; suit = s } -> "6 of " ^ s
-  | { value = 7; suit = s } -> "7 of " ^ s
-  | { value = 8; suit = s } -> "8 of " ^ s
-  | { value = 9; suit = s } -> "9 of " ^ s
-  | { value = 10; suit = s } -> "10 of " ^ s
-  | { value = 11; suit = s } -> "Jack of " ^ s
-  | { value = 12; suit = s } -> "Queen of " ^ s
-  | { value = 13; suit = s } -> "King of " ^ s
-  | _ -> "Should not see this"
 
 (**[print_card_list_aux lst] is a helper function.*)
 let rec print_card_list_aux (lst : card list) =
@@ -51,10 +24,11 @@ let proceed_to_river state =
 
   let river_state = draw_turn_or_river state in
 
-  river_state.community_cards
+  get_community river_state
   |> print_card_list "\n\nHere is the river: \n";
 
-  (get_first (fun t -> t.name = "Player 1") river_state.players).hand
+  get_first (fun t -> get_name t = "Player 1") (get_players river_state)
+  |> get_hand
   |> print_card_list "\n\nHere is your hand again \n";
 
   print_endline
@@ -76,10 +50,11 @@ let proceed_to_turn state =
 
   let pturn_state = draw_turn_or_river state in
 
-  pturn_state.community_cards
+  get_community pturn_state
   |> print_card_list "\n\nHere is the turn: \n";
 
-  (get_first (fun t -> t.name = "Player 1") pturn_state.players).hand
+  get_first (fun t -> get_name t = "Player 1") (get_players pturn_state)
+  |> get_hand
   |> print_card_list "\n\nHere is your hand again \n";
 
   print_endline
@@ -103,10 +78,11 @@ let proceed_to_flop state =
 
   let flop_state = draw_flop state in
 
-  flop_state.community_cards
+  flop_state |> get_community
   |> print_card_list "\n\nHere is the flop: \n";
 
-  (get_first (fun t -> t.name = "Player 1") flop_state.players).hand
+  get_first (fun t -> get_name t = "Player 1") (get_players flop_state)
+  |> get_hand
   |> print_card_list "\n\nHere is your hand again \n";
 
   print_endline
@@ -134,7 +110,10 @@ let play_game start_state =
 
   let preflop_state = deal_hands (shuffle_state start_state) in
 
-  (get_first (fun t -> t.name = "Player 1") preflop_state.players).hand
+  get_first
+    (fun t -> get_name t = "Player 1")
+    (get_players preflop_state)
+  |> get_hand
   |> print_card_list "\nHere is your hand: \n";
 
   print_endline

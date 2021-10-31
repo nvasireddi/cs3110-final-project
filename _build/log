@@ -1,10 +1,10 @@
-# dune exec bin/main.exe
+# dune build
 # OCAMLPARAM: unset
 # Workspace root: /home/vasi/cs3110/cs3110-final-project
-$ /usr/bin/nproc > /tmp/dune145099.output 2> /dev/null
+$ /usr/bin/nproc > /tmp/dune463731.output 2> /dev/null
 # Auto-detected concurrency: 12
 # disable binary cache
-$ /home/vasi/.opam/cs3110-2021fa/bin/ocamlc.opt -config > /tmp/dune75a9a1.output
+$ /home/vasi/.opam/cs3110-2021fa/bin/ocamlc.opt -config > /tmp/dunecb6105.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -112,4 +112,6 @@ $ /home/vasi/.opam/cs3110-2021fa/bin/ocamlc.opt -config > /tmp/dune75a9a1.output
 #      ; windows_unicode = false
 #      }
 #  }
-# Workspace root: /home/vasi/cs3110/cs3110-final-project
+$ (cd _build/default && /home/vasi/.opam/cs3110-2021fa/bin/ocamlc.opt -w +a-4-6-7-9-27-29-30-32..42-44-45-48-50-60-66-67 -warn-error -a+31 -g -bin-annot -I test/.main.eobjs/byte -I /home/vasi/.opam/cs3110-2021fa/lib/ANSITerminal -I /home/vasi/.opam/cs3110-2021fa/lib/biniou -I /home/vasi/.opam/cs3110-2021fa/lib/bytes -I /home/vasi/.opam/cs3110-2021fa/lib/easy-format -I /home/vasi/.opam/cs3110-2021fa/lib/ounit2 -I /home/vasi/.opam/cs3110-2021fa/lib/ounit2/advanced -I /home/vasi/.opam/cs3110-2021fa/lib/stdlib-shims -I /home/vasi/.opam/cs3110-2021fa/lib/yojson -I src/.game.objs/byte -no-alias-deps -opaque -o test/.main.eobjs/byte/dune__exe__Main.cmo -c -impl test/main.ml)
+$ (cd _build/default && /home/vasi/.opam/cs3110-2021fa/bin/ocamlopt.opt -w +a-4-6-7-9-27-29-30-32..42-44-45-48-50-60-66-67 -warn-error -a+31 -g -I test/.main.eobjs/byte -I test/.main.eobjs/native -I /home/vasi/.opam/cs3110-2021fa/lib/ANSITerminal -I /home/vasi/.opam/cs3110-2021fa/lib/biniou -I /home/vasi/.opam/cs3110-2021fa/lib/bytes -I /home/vasi/.opam/cs3110-2021fa/lib/easy-format -I /home/vasi/.opam/cs3110-2021fa/lib/ounit2 -I /home/vasi/.opam/cs3110-2021fa/lib/ounit2/advanced -I /home/vasi/.opam/cs3110-2021fa/lib/stdlib-shims -I /home/vasi/.opam/cs3110-2021fa/lib/yojson -I src/.game.objs/byte -I src/.game.objs/native -intf-suffix .ml -no-alias-deps -opaque -o test/.main.eobjs/native/dune__exe__Main.cmx -c -impl test/main.ml)
+$ (cd _build/default && /home/vasi/.opam/cs3110-2021fa/bin/ocamlopt.opt -w +a-4-6-7-9-27-29-30-32..42-44-45-48-50-60-66-67 -warn-error -a+31 -g -o test/main.exe /home/vasi/.opam/cs3110-2021fa/lib/easy-format/easy_format.cmxa /home/vasi/.opam/cs3110-2021fa/lib/biniou/biniou.cmxa /home/vasi/.opam/cs3110-2021fa/lib/yojson/yojson.cmxa /home/vasi/.opam/cs3110-2021fa/lib/ocaml/unix.cmxa -I /home/vasi/.opam/cs3110-2021fa/lib/ocaml /home/vasi/.opam/cs3110-2021fa/lib/ANSITerminal/ANSITerminal.cmxa -I /home/vasi/.opam/cs3110-2021fa/lib/ANSITerminal src/game.cmxa /home/vasi/.opam/cs3110-2021fa/lib/stdlib-shims/stdlib_shims.cmxa /home/vasi/.opam/cs3110-2021fa/lib/ounit2/advanced/oUnitAdvanced.cmxa /home/vasi/.opam/cs3110-2021fa/lib/ounit2/oUnit.cmxa test/.main.eobjs/native/dune__exe__Main.cmx)
